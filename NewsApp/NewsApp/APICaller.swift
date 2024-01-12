@@ -15,8 +15,8 @@ final class APICaller {
         static let topHeadLinesURL = URL(string: "https://newsdata.io/api/1/news?apikey=pub_36334567db4fd6971a9c32df0eb8281a006d3")
     }
     
-    public func getTopNews(completion: @escaping (Swift.Result<News, Error>) -> Void) {
-
+    public func getTopNews(completion: @escaping (Swift.Result<[Result], Error>) -> Void) {
+        
         guard let url = Constants.topHeadLinesURL else {
             return
         }
@@ -27,8 +27,7 @@ final class APICaller {
             } else if let data = data {
                 do {
                     let result = try JSONDecoder().decode(News.self, from: data)
-                    completion(.success(result))
-                    print(result.results.count)
+                    completion(.success(result.results))
                 } catch {
                     completion(.failure(error))
                 }

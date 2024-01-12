@@ -20,15 +20,16 @@ struct Result: Codable {
     let keywords, creator: [String]?
     let videoURL: JSONNull?
     let description, content: String?
-    let pubDate: String  // Change type to String
+    let pubDate: String
     let imageURL: String?
     let sourceID: SourceID
     let sourcePriority: Int
     let country: [Country]
     let category: [Category]?
     let language: Language
-    let aiTag, sentiment, sentimentStats: AITag
-
+    let aiTag: AITag
+    let sentiment, sentimentStats: AITag?
+    
     enum CodingKeys: String, CodingKey {
         case articleID = "article_id"
         case title, link, keywords, creator
@@ -44,27 +45,26 @@ struct Result: Codable {
     }
 }
 
+
 enum AITag: Codable {
     case single(String)
     case multiple([String])
-
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-
+        
         do {
-            // Try to decode a single string
             let stringValue = try container.decode(String.self)
             self = .single(stringValue)
         } catch DecodingError.typeMismatch {
-            // If decoding as a single string fails, try to decode as an array of strings
             let arrayValue = try container.decode([String].self)
             self = .multiple(arrayValue)
         }
     }
-
+    
     func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-
+        
         switch self {
         case .single(let stringValue):
             try container.encode(stringValue)
@@ -79,12 +79,12 @@ enum AITag: Codable {
 enum Category: String, Codable {
     case entertainment = "entertainment"
     case top = "top"
-    case unknown = "unknown" // Add a default case
-
+    case unknown = "unknown"
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let rawValue = try container.decode(String.self)
-
+        
         if let category = Category(rawValue: rawValue) {
             self = category
         } else {
@@ -98,12 +98,12 @@ enum Country: String, Codable {
     case argentina = "argentina"
     case bosniaAndHerzegovina = "bosnia and herzegovina"
     case turkey = "turkey"
-    case unknown = "unknown" // Add a default case
-
+    case unknown = "unknown"
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let rawValue = try container.decode(String.self)
-
+        
         if let country = Country(rawValue: rawValue) {
             self = country
         } else {
@@ -112,16 +112,17 @@ enum Country: String, Codable {
     }
 }
 
+
 enum Language: String, Codable {
     case bosnian = "bosnian"
     case spanish = "spanish"
     case turkish = "turkish"
-    case unknown = "unknown" // Add a default case
-
+    case unknown = "unknown"
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let rawValue = try container.decode(String.self)
-
+        
         if let language = Language(rawValue: rawValue) {
             self = language
         } else {
@@ -131,7 +132,6 @@ enum Language: String, Codable {
 }
 
 
-// Use a custom DateFormat
 extension DateFormatter {
     static let customDateFormat: DateFormatter = {
         let formatter = DateFormatter()
@@ -150,12 +150,12 @@ enum SourceID: String, Codable {
     case aksam = "aksam"
     case elinformador = "elinformador"
     case haberBa = "haber_ba"
-    case unknown = "unknown" // Add a default case
-
+    case unknown = "unknown"
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let rawValue = try container.decode(String.self)
-
+        
         if let sourceID = SourceID(rawValue: rawValue) {
             self = sourceID
         } else {
@@ -164,25 +164,26 @@ enum SourceID: String, Codable {
     }
 }
 
+
 // MARK: - Encode/decode helpers
 class JSONNull: Codable, Hashable {
     public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
         return true
     }
-
+    
     public var hashValue: Int {
         return 0
     }
-
+    
     public init() {}
-
+    
     public required init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         if !container.decodeNil() {
             throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
         }
     }
-
+    
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encodeNil()
