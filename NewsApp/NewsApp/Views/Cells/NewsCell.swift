@@ -93,8 +93,17 @@ final class NewsCell: UITableViewCell {
             loadingIndicator.stopAnimating()
             newsImage.image = UIImage(data: data)
         } else if let imageURL = viewModel.imageURL {
+            var updatedImageURL = imageURL
+            if imageURL.scheme?.lowercased() == "http" {
+                var components = URLComponents(url: imageURL, resolvingAgainstBaseURL: false)
+                components?.scheme = "https"
+                if let updatedURL = components?.url {
+                    updatedImageURL = updatedURL
+                }
+            }
+            
             loadingIndicator.startAnimating()
-            URLSession.shared.dataTask(with: imageURL) { [weak self] data, response, error in
+            URLSession.shared.dataTask(with: updatedImageURL) { [weak self] data, response, error in
                 defer {
                     DispatchQueue.main.async {
                         self?.loadingIndicator.stopAnimating()

@@ -12,6 +12,7 @@ final class NewsViewModel {
     let description: String
     let imageURL: URL?
     var imageData: Data?
+    var isFavorite: Bool = false
     
     init(title: String, description: String, imageURL: URL?, imageData: Data?) {
         self.title = title
