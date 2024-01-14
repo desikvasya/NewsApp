@@ -16,6 +16,7 @@
 		3995E08D2B512E2700E96E2E /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3995E08C2B512E2700E96E2E /* NewsModel.swift */; };
 		3995E08F2B513EA900E96E2E /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3995E08E2B513EA900E96E2E /* NewsCell.swift */; };
 		3995E0912B53A44600E96E2E /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3995E0902B53A44600E96E2E /* NewsViewModel.swift */; };
+		3995E0932B53AD3D00E96E2E /* DetailedNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3995E0922B53AD3D00E96E2E /* DetailedNewsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		3995E08C2B512E2700E96E2E /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		3995E08E2B513EA900E96E2E /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		3995E0902B53A44600E96E2E /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
+		3995E0922B53AD3D00E96E2E /* DetailedNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedNewsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				39245AE72B512414001DDD25 /* NewsViewController.swift */,
 				3995E08E2B513EA900E96E2E /* NewsCell.swift */,
 				3995E0902B53A44600E96E2E /* NewsViewModel.swift */,
+				3995E0922B53AD3D00E96E2E /* DetailedNewsViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 				3995E08B2B512AED00E96E2E /* APICaller.swift in Sources */,
 				3995E0912B53A44600E96E2E /* NewsViewModel.swift in Sources */,
 				3995E08F2B513EA900E96E2E /* NewsCell.swift in Sources */,
+				3995E0932B53AD3D00E96E2E /* DetailedNewsViewController.swift in Sources */,
 				3995E08D2B512E2700E96E2E /* NewsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
