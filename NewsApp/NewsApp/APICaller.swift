@@ -8,19 +8,15 @@
 import Foundation
 
 final class APICaller {
-    
     static let shared = APICaller()
-    
+
     struct Constants {
-        static let topHeadLinesURL = URL(string: "https://newsdata.io/api/1/news?apikey=pub_36334567db4fd6971a9c32df0eb8281a006d3")
+        static let topHeadlinesURL = URL(string: "https://newsdata.io/api/1/news?apikey=pub_36334567db4fd6971a9c32df0eb8281a006d3")
     }
-    
-    public func getTopNews(completion: @escaping (Swift.Result<[Result], Error>) -> Void) {
-        
-        guard let url = Constants.topHeadLinesURL else {
-            return
-        }
-        
+
+    func getTopNews(completion: @escaping (Swift.Result<[Result], Error>) -> Void) {
+        guard let url = Constants.topHeadlinesURL else { return }
+
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
                 completion(.failure(error))

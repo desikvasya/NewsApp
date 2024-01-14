@@ -15,6 +15,7 @@
 		3995E08B2B512AED00E96E2E /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3995E08A2B512AED00E96E2E /* APICaller.swift */; };
 		3995E08D2B512E2700E96E2E /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3995E08C2B512E2700E96E2E /* NewsModel.swift */; };
 		3995E08F2B513EA900E96E2E /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3995E08E2B513EA900E96E2E /* NewsCell.swift */; };
+		3995E0912B53A44600E96E2E /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3995E0902B53A44600E96E2E /* NewsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		3995E08A2B512AED00E96E2E /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		3995E08C2B512E2700E96E2E /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		3995E08E2B513EA900E96E2E /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		3995E0902B53A44600E96E2E /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				39245AE72B512414001DDD25 /* NewsViewController.swift */,
 				3995E08E2B513EA900E96E2E /* NewsCell.swift */,
+				3995E0902B53A44600E96E2E /* NewsViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				39245AE42B512414001DDD25 /* AppDelegate.swift in Sources */,
 				39245AE62B512414001DDD25 /* SceneDelegate.swift in Sources */,
 				3995E08B2B512AED00E96E2E /* APICaller.swift in Sources */,
+				3995E0912B53A44600E96E2E /* NewsViewModel.swift in Sources */,
 				3995E08F2B513EA900E96E2E /* NewsCell.swift in Sources */,
 				3995E08D2B512E2700E96E2E /* NewsModel.swift in Sources */,
 			);
