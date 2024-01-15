@@ -77,22 +77,10 @@ final class FavoritesCell: UITableViewCell {
         titleLabel.text = favoriteNews.title
         descriptionLabel.text = favoriteNews.description
         
-        if let imageURL = favoriteNews.imageURL {
-            URLSession.shared.dataTask(with: imageURL) { [weak self] data, response, error in
-                if let error = error {
-                    print("Error loading image data: \(error)")
-                    return
-                }
-                
-                guard let data = data else {
-                    print("No image data received")
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                    self?.newsImage.image = UIImage(data: data)
-                }
-            }.resume()
+        // получаем сохраненную картинку
+        if let imageData = UserDefaults.standard.data(forKey: "FavoriteImageData_\(favoriteNews.title)") {
+            newsImage.image = UIImage(data: imageData)
         }
     }
+
 }

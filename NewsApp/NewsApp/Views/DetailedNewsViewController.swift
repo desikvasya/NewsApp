@@ -89,8 +89,16 @@ final class DetailedViewController: UIViewController {
     }
     
     private func configureUIElements() {
-        imageView.image = selectedImage
         titleLabel.text = selectedTitle
         descriptionLabel.text = selectedDescription
+        
+        // получаем картинку из UserDefaults
+        if let imageData = UserDefaults.standard.data(forKey: "FavoriteImageData_\(selectedTitle ?? "")") {
+            imageView.image = UIImage(data: imageData)
+        } else {
+            imageView.image = selectedImage
+        }
     }
+
+    
 }

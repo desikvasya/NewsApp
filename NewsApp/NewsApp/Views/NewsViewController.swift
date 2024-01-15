@@ -186,6 +186,12 @@ extension NewsViewController {
             description: news.description,
             imageURL: news.imageURL
         )
+        
+        // сохраняем картинку в UserDefaults
+        if let imageData = news.imageData {
+            UserDefaults.standard.set(imageData, forKey: "FavoriteImageData_\(favorite.title)")
+        }
+        
         FavoritesManager.shared.addFavorite(favorite)
         
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
