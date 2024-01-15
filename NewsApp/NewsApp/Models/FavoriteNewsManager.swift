@@ -34,6 +34,12 @@ class FavoritesManager {
     
     func removeFavorite(at index: Int) {
         var favorites = getFavorites()
+        
+        guard index < favorites.count else {
+            print("Index out of range")
+            return
+        }
+        
         favorites.remove(at: index)
         saveFavorites(favorites)
     }

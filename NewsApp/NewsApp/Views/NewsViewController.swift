@@ -187,10 +187,12 @@ extension NewsViewController {
             imageURL: news.imageURL
         )
         
-        // сохраняем картинку в UserDefaults
+        // сохраняем картинку, название и описание в UserDefaults
         if let imageData = news.imageData {
             UserDefaults.standard.set(imageData, forKey: "FavoriteImageData_\(favorite.title)")
         }
+        UserDefaults.standard.set(favorite.title, forKey: "FavoriteTitle_\(favorite.title)")
+        UserDefaults.standard.set(favorite.description, forKey: "FavoriteDescription_\(favorite.title)")
         
         FavoritesManager.shared.addFavorite(favorite)
         
@@ -200,9 +202,16 @@ extension NewsViewController {
         
         delegate?.didUpdateFavorites()
     }
+
     
     private func removeFromFavorites(at indexPath: IndexPath) {
         let removedNews = viewModels[indexPath.row]
+        
+        // удаляем из UserDefaults
+        UserDefaults.standard.removeObject(forKey: "FavoriteImageData_\(removedNews.title)")
+        UserDefaults.standard.removeObject(forKey: "FavoriteTitle_\(removedNews.title)")
+        UserDefaults.standard.removeObject(forKey: "FavoriteDescription_\(removedNews.title)")
+        
         FavoritesManager.shared.removeFavorite(at: indexPath.row)
         
         if let index = viewModels.firstIndex(where: { $0.title == removedNews.title && $0.description == removedNews.description }) {
@@ -213,5 +222,6 @@ extension NewsViewController {
         
         delegate?.didUpdateFavorites()
     }
+
 }
 

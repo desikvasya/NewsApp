@@ -67,9 +67,16 @@ class FavoritesViewController: UIViewController {
     }
     
     private func removeFromFavorites(at indexPath: IndexPath) {
+        let removedNews = favorites[indexPath.row]
+        
+        UserDefaults.standard.removeObject(forKey: "FavoriteImageData_\(removedNews.title)")
+        UserDefaults.standard.removeObject(forKey: "FavoriteTitle_\(removedNews.title)")
+        UserDefaults.standard.removeObject(forKey: "FavoriteDescription_\(removedNews.title)")
+        
         FavoritesManager.shared.removeFavorite(at: indexPath.row)
         fetchData()
     }
+
 }
 
 extension FavoritesViewController: UITableViewDataSource {
@@ -105,11 +112,11 @@ extension FavoritesViewController: UITableViewDelegate {
 }
 
 extension FavoritesViewController: NewsViewControllerDelegate {
-    
+
     func didUpdateFavorites() {
         fetchData()
     }
-    
+
     func removeFromFavorites(_ news: FavoriteNewsViewModel) {
         if let index = favorites.firstIndex(where: { $0.title == news.title && $0.description == news.description }) {
             favorites.remove(at: index)
